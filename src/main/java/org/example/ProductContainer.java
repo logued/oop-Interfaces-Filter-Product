@@ -1,37 +1,58 @@
+package org.example;
+
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class ProductList 
+public class ProductContainer
 {
-	private List<Product> list;
+	private final List<Product> productList;
 	
-	public ProductList()
+	public ProductContainer()
 	{
-		this.list = new ArrayList<Product>();
+		this.productList = new ArrayList<>();
 	}
-	
+
 	public void add(Product p)
 	{
-		this.list.add(p);
+		this.productList.add(p);
 	}
-	
-	public List<Product> searchBy(String name)
+
+	// Two filter methods "hard coded" into the ProductContainer class.
+	// findProductByName() and findProductsByStarRating()
+	//
+	// Should the container programmer have to anticipate all the various
+	// types of "findBy" filter methods that a client of the container might need ??
+	// Discuss!
+	public Product findProductByName(String name)
 	{
-		List<Product> returnList = new ArrayList<Product>();
-		for(Product p : this.list)
+		for(Product product : this.productList)
 		{
-			if(p.getName().equalsIgnoreCase(name))
-				returnList.add(p);
+			if(product.getName().equalsIgnoreCase(name))
+				return product;
 		}
-		
+		return null; 	// return null if not found. Must check for this case in caller.
+	}
+
+	public List<Product> findProductsByStarRating(int rating)
+	{
+		List<Product> returnList = new ArrayList<>();
+		for(Product product : this.productList)
+		{
+			if(product.getStarRating() == rating)
+				returnList.add(product);
+		}
 		return returnList;
 	}
-	
-	public List<Product> searchBy(IFilter filter)
+
+	/**
+	 *
+	 * @param filter - an IProductFilter type object
+	 * @return list of matching objects - could be empty list
+	 */
+	public List<Product> filterBy(IFilter_Product filter)
 	{
 		List<Product> returnList = new ArrayList<Product>();
-		for(Product p : this.list)
+		for(Product p : this.productList)
 		{
 			if(filter.matches(p))
 				returnList.add(p);

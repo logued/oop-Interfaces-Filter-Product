@@ -1,26 +1,24 @@
+package org.example;
 
+import java.util.Objects;
 
-/**
- * A simple class to demo use of the clone() method interface
- * @author NMCG
- * @version 1.0
- *
- */
 public class Product
 {
 	private String name;
 	private double price;
+
+	private int starRating; // rating 1 to 5
 	
-	public Product(String name, double price) 
+	public Product(String name, double price, int starRating)
 	{
 		this.name = name;
 		this.price = price;
+		this.starRating = starRating;
 	}
 
 	public String getName() {
 		return name;
 	}
-
 	public double getPrice() {
 		return price;
 	}
@@ -33,71 +31,38 @@ public class Product
 		this.price = price;
 	}
 
+	public int getStarRating() {
+		return starRating;
+	}
+
+	public void setStarRating(int starRating) {
+		this.starRating = starRating;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [Name=" + name + ", price=" + price + "]";
+		return "Product{" +
+				"name='" + name + '\'' +
+				", price=" + price +
+				", starRating=" + starRating +
+				'}';
 	}
 
-	//used to prevent an ArrayList from allowing duplicates
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Product product = (Product) o;
+		return Double.compare(product.price, price) == 0
+				&& starRating == product.starRating
+				&& name.equals(product.name);
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(price);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
+		return Objects.hash(name, price, starRating);
 	}
 
-	//used to prevent an ArrayList from allowing duplicates
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Product other = (Product) obj;
-
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (this.price != other.price)
-			return false;
-		return true;
-	}
-
-	/*
-	 * The clone method is used to create a (deep) copy of the current Product object(non-Javadoc)
-	 * A deep copy is where the clone is a separate object in RAM - so changing the clone wont change the original.
-	 * A shallow copy is where the clone points to the same object in RAM - so changing either object affects both.
-	 * e.g. 
-	 * 
-	 * A shallow copy would be made like this...
-	 * 
-	 *	Product p = new Product("Coca Cola 2ltr", 3.50);
-	 *  Product shallowCopy = p;
-	 *  
-	 *  p.setName("Original Coca Cola 2ltr"); //this statement would change the name for shallowCopy too
-	 *  
-	 * A deep copy would be made like this...
-	 *  
-	 * 	Product p = new Product("Coca Cola 2Ltr", 3.50);
-	 *  Product deepCopy = new Product(p.getName(), p.getPrice());
-	 *  
-	 *  p.setName("Original Coca Cola 2ltr"); //this statement would ONLY change the name for p
-	 * 
-	 */
-	public Object clone()
-	{
-		//shallow	
-		Product clone = new Product(this.name, this.price);
-  		return clone;
-	}
 }
 
 

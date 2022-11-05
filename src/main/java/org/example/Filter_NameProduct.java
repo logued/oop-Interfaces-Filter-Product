@@ -13,10 +13,10 @@ package org.example;						// Nov 2022
 // filter class, instantiate it, and pass it into the container.
 // We can create as many filters as we like.
 
-public class Filter_ProductName implements IProductFilter
+public class Filter_NameProduct implements IFilter_Product
 {
 	private final String name;
-	public Filter_ProductName(String name)
+	public Filter_NameProduct(String name)
 	{
 		this.name = name;
 	}

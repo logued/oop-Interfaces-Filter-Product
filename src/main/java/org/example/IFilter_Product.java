@@ -8,7 +8,10 @@ package org.example;
 
 // Later we can generalize this interface to deal with objects of any type.
 
-public interface IProductFilter
+// Note the "I" means "Interface", and is sometimes used to help identify Interface types,
+// however, it is not a requirement.
+
+public interface IFilter_Product
 {
 	boolean matches(Product product);
 }

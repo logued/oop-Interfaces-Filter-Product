@@ -1,9 +1,9 @@
 package org.example;
 
-public class Filter_ProductPriceLessThan implements IProductFilter {
+public class Filter_PriceLessThanProduct implements IFilter_Product {
 
 	private final double priceLimit;
-	public Filter_ProductPriceLessThan(double priceLimit)
+	public Filter_PriceLessThanProduct(double priceLimit)
 	{
 		this.priceLimit = priceLimit;
 	}
