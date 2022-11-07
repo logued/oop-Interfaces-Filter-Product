@@ -2,7 +2,9 @@ package org.example;
 import java.util.List;
 
 // The Filter Pattern
-//
+
+// We can generalize this filter by using type-parameters and generics. See later.
+
 public class MainApp {
 
 	public static void main(String[] args) 
