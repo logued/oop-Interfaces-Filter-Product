@@ -43,11 +43,11 @@ public class MainApp {
 			System.out.println("Products with star rating of 4 :" + list);
 
 
-		// Retrieve Products from ProductContainer by passing a IProductFilter type
+		// Retrieve Products from ProductContainer by passing a IFilter_Product type
 		// object into the container's filterBy() method.
 		// Note that the filters that we use are created outside the ProductContainer class.
-		// This is a good, as we are decoupling the filter logic from the container logic.
-		// The container depends on the interface IProductInterface types.
+		// This is a good, as we are decoupling (separating) the filter logic from the container logic.
+		// The container depends on the interface IFilter_Product types.
 		// This class is said to be a "client" of the ProductContainer, because it
 		// uses the services provided by the container.
 		// This setup allows any client to create any type and number of filters it needs

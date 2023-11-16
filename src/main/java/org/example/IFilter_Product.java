@@ -1,10 +1,10 @@
 package org.example;
 
-// The matches() method matches two Products.
-// filterBy() is passed in an IProductFilter object that implements the IProductFilter interface, and
+// The matches() method matches two Products, and returns 'true' if they match.
+// filterBy() receives a filter object that implements the IFilter_Product interface, and
 // thus has a filterBy() method.
-// Because of this setup, we can create a filter and apply the filter to the ProductContainer
-// without having to add code in the ProductContainer class.
+// Because of this setup, we can create a filter that implements IFilter_Product
+// and pass it into the filterBy() method of the ProductContainer class.
 
 // Later we can generalize this interface to deal with objects of any type.
 

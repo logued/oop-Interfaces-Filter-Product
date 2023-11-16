@@ -1,10 +1,10 @@
 package org.example;						// Nov 2022
 
-// Concrete implementation of the IProductFilter interface
+// Concrete implementation of the IFilter_Product interface
 //
-// Here we create an IProductFilter object that implements
+// Here we create an IFilter_Product object that implements
 // the matches() method with the logic we want to use for
-// the filter.  We simply make an instance of this object
+// the filter.  We simply construct an instance of this object
 // and pass it into the filterBy() method of the ProductContainer
 // where it is applied to filter objects.
 // Big advantage is that it decouples the filter logic from the container logic,
@@ -16,10 +16,13 @@ package org.example;						// Nov 2022
 public class Filter_NameProduct implements IFilter_Product
 {
 	private final String name;
+
 	public Filter_NameProduct(String name)
 	{
 		this.name = name;
 	}
+
+	// Match the name set on initialization with one from the Product argument.
 	public boolean matches(Product product)
 	{
 		return product.getName().equalsIgnoreCase(name);
