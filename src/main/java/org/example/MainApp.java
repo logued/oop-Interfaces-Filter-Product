@@ -31,7 +31,7 @@ public class MainApp {
 		System.out.println("Find a product by name:");
 		Product product = productContainer.findProductByName("MGS"); // assume unique names
 		if(product==null)
-			System.out.println("No product was found with that name");
+			System.out.println("No product was found with that name.");
 		else
 			System.out.println("Found product: " + product);
 
