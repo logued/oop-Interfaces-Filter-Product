@@ -36,38 +36,41 @@ public class ProductContainer
 		for(Product product : this.productList)
 		{
 			if(product.getName().equalsIgnoreCase(name))
-				return product;
+				// return a copy (clone) of the product found.
+				return new Product(product.getName(),product.getPrice(),product.getStarRating());
 		}
 		return null; 	// return null if not found. Must check for this case in caller.
 	}
 
 	public List<Product> findProductsByStarRating(int rating)
 	{
-		List<Product> returnList = new ArrayList<>();
+		List<Product> list = new ArrayList<>();
 		for(Product product : this.productList)
 		{
 			if(product.getStarRating() == rating)
-				returnList.add(product);
+				list.add(product);
 		}
-		return returnList;
+		return list;
 	}
+	// add findProductsByName( String name)
 
+	// Question:
 	// Should the container programmer have to anticipate all the various
 	// types of "findBy" filter methods that a client of the container might need ??
 	// This would be difficult - so we need a more flexible way of filtering - one
 	// that does not involve adding a new filter method each time we need one.
 	//
-	// It would be better if the filtering logic could generalized and that
+	// It would be better if the filtering logic could be generalized and the
 	// logic required for filtering be passed in as a function object.
 
 	/**
 	 *
-	 * @param filter - an IFilter_Product type object
-	 * @return list of matching objects - could be empty list
+	 * @param filter - an IFilter_Product type object  (I for Interface)
+	 * @return list of matching objects - empty list is a valid response
 	 */
 	public List<Product> filterBy(IFilter_Product filter)
 	{
-		List<Product> list = new ArrayList<Product>();	// list of matched objects
+		List<Product> list = new ArrayList<>();	// list of matched objects
 		for(Product p : this.productList)
 		{
 			if(filter.matches(p))  // does this Product match the criteria coded stored in the filter.
